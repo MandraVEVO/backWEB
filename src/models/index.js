@@ -1,10 +1,20 @@
 import { Sequelize } from "sequelize";
 import config from "../config/config.js";
 import { Usuarios, UsuariosScheme } from "../models/Usuarios.js";
+import {Horario, HorarioScheme} from "../models/Horario.js";
+import {Precio, PrecioScheme} from "../models/Precio.js";
+import {Promocion, PromocionScheme} from "../models/Promocion.js";
+import {Sugerencias, SugerenciasScheme} from "../models/Sugerencias.js";
+import {Terminal, TerminalScheme} from "../models/Terminal.js";
 
 /* Configura las tablas */
 function setupModels(sequelize) {
   Usuarios.init(UsuariosScheme, Usuarios.config(sequelize));
+  Horario.init(HorarioScheme, Horario.config(sequelize));
+  Precio.init(PrecioScheme, Precio.config(sequelize));
+  Promocion.init(PromocionScheme, Promocion.config(sequelize));
+  Sugerencias.init(SugerenciasScheme, Sugerencias.config(sequelize));
+  Terminal.init(TerminalScheme, Terminal.config(sequelize));
 }
 
 const sequelize = new Sequelize(
