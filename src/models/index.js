@@ -6,6 +6,7 @@ import {Precio, PrecioScheme} from "../models/Precio.js";
 import {Promocion, PromocionScheme} from "../models/Promocion.js";
 import {Sugerencias, SugerenciasScheme} from "../models/Sugerencias.js";
 import {Terminal, TerminalScheme} from "../models/Terminal.js";
+import {Boleto, BoletoScheme} from "../models/Boleto.js";
 
 /* Configura las tablas */
 function setupModels(sequelize) {
@@ -15,6 +16,29 @@ function setupModels(sequelize) {
   Promocion.init(PromocionScheme, Promocion.config(sequelize));
   Sugerencias.init(SugerenciasScheme, Sugerencias.config(sequelize));
   Terminal.init(TerminalScheme, Terminal.config(sequelize));
+  Boleto.init(BoletoScheme, Boleto.config(sequelize));
+
+
+  // Relaciones
+  Precio.hasOne(Boleto); // Precio hereda a Boleto
+  Boleto.belongsTo(Precio); // Boleto pertenece a Precio
+
+  /* Relación Boleto y Horario */
+  Horario.hasOne(Boleto); // Horario hereda a Boleto
+  Boleto.belongsTo(Horario); // Boleto pertenece a Horario
+
+  /* Relación Boleto y Promoción */
+  Promocion.hasOne(Boleto); // Promoción hereda a Boleto
+  Boleto.belongsTo(Promocion); // Boleto pertenece a Promoción
+
+  Usuarios.hasOne(Boleto); // Usuario hereda a Boleto
+  Boleto.belongsTo(Usuarios); // Boleto pertenece a Usuario
+
+  Terminal.hasOne(Boleto); // Terminal hereda a Boleto
+  Boleto.belongsTo(Terminal); // Boleto pertenece a Terminal
+
+ 
+
 }
 
 const sequelize = new Sequelize(
@@ -42,4 +66,4 @@ setupModels(sequelize);
   }
 })();
 
-export { setupModels, Usuarios };
+export { setupModels, Usuarios, Horario, Precio, Promocion, Sugerencias, Terminal, Boleto };

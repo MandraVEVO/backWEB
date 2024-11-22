@@ -5,6 +5,7 @@ import PrecioRoutes from "./Precio.routes.js";
 import PromocionRoutes from "./Promocion.routes.js";
 import SugerenciasRoutes from "./Sugerencias.routes.js";
 import TerminalRoutes from "./Terminal.routes.js";
+import BoletoRoutes from "./Boleto.routes.js";
 
 function routes(app){
     const router = express.Router();
@@ -15,6 +16,7 @@ function routes(app){
     router.use('', PromocionRoutes);
     router.use('', SugerenciasRoutes);
     router.use('', TerminalRoutes);
+    router.use('', BoletoRoutes);
    
 }
 
