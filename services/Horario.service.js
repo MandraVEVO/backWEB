@@ -1,4 +1,7 @@
 import { Horario } from "../src/models/Horario.js";
+import { Precio } from "../src/models/Precio.js";
+import { Promocion } from "../src/models/Promocion.js";
+import { Terminal } from "../src/models/Terminal.js";
 
 class HorarioService{
     constructor(){}
@@ -9,7 +12,16 @@ class HorarioService{
         return await Horario.findAll();
     }
     async getById(id){
-        return await Horario.findByPk(id);
+        return await Horario.findByPk(id,{
+            include: [
+                {
+                    model: Precio,
+                include:
+                [Promocion]
+                },
+                Terminal
+            ]
+        });
     }
     async update(id, data){
         const horario = await Horario.findByPk(id);

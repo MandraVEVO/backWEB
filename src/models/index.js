@@ -20,22 +20,22 @@ function setupModels(sequelize) {
 
 
   // Relaciones
-  Precio.hasOne(Boleto); // Precio hereda a Boleto
-  Boleto.belongsTo(Precio); // Boleto pertenece a Precio
+  Precio.hasOne(Horario); // Precio hereda a Boleto
+  Horario.belongsTo(Precio); // Boleto pertenece a Precio
 
   /* Relación Boleto y Horario */
   Horario.hasOne(Boleto); // Horario hereda a Boleto
   Boleto.belongsTo(Horario); // Boleto pertenece a Horario
 
   /* Relación Boleto y Promoción */
-  Promocion.hasOne(Boleto); // Promoción hereda a Boleto
-  Boleto.belongsTo(Promocion); // Boleto pertenece a Promoción
+  Promocion.hasOne(Precio); // Promoción hereda a Boleto
+  Precio.belongsTo(Promocion); // Boleto pertenece a Promoción
 
   Usuarios.hasOne(Boleto); // Usuario hereda a Boleto
   Boleto.belongsTo(Usuarios); // Boleto pertenece a Usuario
 
-  Terminal.hasOne(Boleto); // Terminal hereda a Boleto
-  Boleto.belongsTo(Terminal); // Boleto pertenece a Terminal
+  Terminal.hasMany(Horario); // Terminal hereda a Boleto 
+  Horario.belongsTo(Terminal); // Boleto pertenece a Terminal
 
  
 

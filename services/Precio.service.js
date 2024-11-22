@@ -1,4 +1,5 @@
 import { Precio } from "../src/models/Precio.js";
+import { Promocion } from "../src/models/Promocion.js";
 
 class PrecioService{
     constructor(){}
@@ -6,10 +7,18 @@ class PrecioService{
         return await Precio.create(data);
     }
     async getAll(){
-        return await Precio.findAll();
+        return await Precio.findAll({
+            include: [
+                Promocion 
+            ]
+        });
     }
     async getById(id){
-        return await Precio.findByPk(id);
+        return await Precio.findByPk(id,{
+            include: [
+                Promocion 
+            ]
+        });
     }
     async update(id, data){
         const precio = await Precio.findByPk(id);
